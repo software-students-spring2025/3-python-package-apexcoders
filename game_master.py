@@ -20,22 +20,26 @@ def countdown(seconds):
    
     return(datetime.datetime.now())
 
-def random_multiple_people_punishment():
-    """Selects multiple people and assigns a punishment."""
-    names = input("Enter names separated by commas (e.g., Alice, Bob, Charlie): ").split(",")
-    names = [name.strip() for name in names]
-    if not names or names == [""]:
-        print("No names entered. Try again!")
-        return
+def random_multiple_people_punishment(num, name_list):
+    # Validate if name_list is a list
+    if not isinstance(name_list, list):
+        return "Error: The name list must be a valid list."
+
+    # Validate if all elements in name_list are non-empty strings
+    if not all(isinstance(name, str) and name.strip() for name in name_list):
+        return "Error: Please provide a list of non-empty strings."
+
+    stripped_names = [name.strip() for name in name_list if name.strip()]
     
-    try:
-        num = int(input("How many people should be punished? "))
-        if num <= 0 or num > len(names):
-            print("Invalid number of people.")
-            return
-    except ValueError:
-        print("Please enter a valid number.")
-        return
+    # Check for duplicates
+    if len(set(stripped_names)) < len(stripped_names):
+        return "Error: Duplicate names are not allowed. Please provide unique names."
+
+    if num <= 0:
+        return "Error: The number of people to punish must be at least 1."
+
+    if num > len(stripped_names):
+        return f"Error: Cannot punish {num} people when only {len(stripped_names)} names are available."
 
     punishments = [
         "Drink a shot!",
@@ -44,30 +48,31 @@ def random_multiple_people_punishment():
         "Wear socks on your hands for the next round!",
         "Speak in an accent for 5 minutes!"
     ]
-    
-    selected_people = random.sample(names, num)
+
+    selected_people = random.sample(stripped_names, num)
     punishment = random.choice(punishments)
-    print(f"{', '.join(selected_people)} must {punishment}")
+    
+    return f"{', '.join(selected_people)} must {punishment}"
+
 
 def show_help():
     help_text = """
     GameMaster Package - Party Game Assistant
     
     Available Functions:
-    1. random_multiple_people_punishment() - Selects random people and gives them a punishment.
-    2. who_pays_the_bill() - Randomly picks a person to pay the bill.
-    3. random_game_idea() - Suggests a random game for a given number of players.
-    4. random_dare() - Generates a random dare task.
-    5. random_truth_question() - Generates a random truth question.
-    6. spin_the_bottle() - Picks a random person for a challenge.
-    7. countdown_timer() - Starts a countdown timer.
+    1. random_multiple_people_punishment(2, ["Rin", "Elena", "Tony", "Corrine"]) - Selects 2 random people and gives them a punishment. 
+    2. who_pays_the_bill(["Rin", "Elena", "Tony", "Corrine"]) - Randomly picks a person to pay the bill. 
+    3. random_game_idea(4) - Suggests a random game for 4 players. 
+    4. random_dare("medium") - Generates a random dare task.
+    5. random_truth_question("medium") - Generates a truth question. 
+    6. spin_the_bottle(["Rin", "Elena", "Tony", "Corrine"]) - Picks a random person for a challenge. 
+    7. countdown_timer(30) - Starts a 30-second countdown. 
     """
     print(help_text)
 
-# Always execute this
-show_help()
+    # Always execute this
+    show_help()
 
 
-#test run or not
-if __name__ == "__main__":
-    random_multiple_people_punishment() 
+
+ 
