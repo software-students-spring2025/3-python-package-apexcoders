@@ -1,4 +1,18 @@
-import random
+import random, time
+
+def spin_the_bottle(name_list):
+    selected_people = random.choice(name_list)
+    
+    return f"{selected_people} is selected!"
+
+def countdown(t):
+    while t:
+        mins, secs = divmod(t, 60)
+        timer = '{:02d}:{:02d}'.format(mins, secs)
+        print(timer)
+        time.sleep(1)
+        t -= 1
+    print('Time is up!')
 
 def random_multiple_people_punishment(num, name_list):
     if num > len(name_list):
