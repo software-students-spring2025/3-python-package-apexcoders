@@ -70,8 +70,13 @@ def show_help():
     """
     print(help_text)
 
-    # Always execute this
-    show_help()
+
+
+# Always execute this for testing    
+show_help()
+result = random_multiple_people_punishment(2, ["a"])
+print(result)
+
 
 
 
