@@ -1,6 +1,8 @@
 import random, time, datetime
 
 def spin_the_bottle(name_list):
+    if len(name_list)<=0:
+        raise ValueError("name_list must contain one or more person.")
     selected_people = random.choice(name_list)
     
     return f"{selected_people} is selected!"
@@ -15,6 +17,7 @@ def countdown(seconds):
         time.sleep(1)
         seconds -= 1
     print('Time is up!')
+   
     return(datetime.datetime.now())
 
 def random_multiple_people_punishment(num, name_list):
