@@ -1,4 +1,4 @@
-import random, time
+import random, time, datetime
 
 def spin_the_bottle(name_list):
     selected_people = random.choice(name_list)
@@ -15,6 +15,7 @@ def countdown(seconds):
         time.sleep(1)
         seconds -= 1
     print('Time is up!')
+    return(datetime.datetime.now())
 
 def random_multiple_people_punishment(num, name_list):
     if num > len(name_list):
