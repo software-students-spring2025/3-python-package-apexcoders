@@ -10,6 +10,7 @@ authors = [
     { name="Tony Zhao", email="sz3822@nyu.edu" },
     { name="Rin Qi", email="yq2290@nyu.edu" },
     { name="Corrine Huang", email="ch3807@nyu.edu" },
+    { name="Huixin Li", email = "hl4909@nyu.edu" }
 ]
 license = { file = "LICENSE" }
 readme = "README.md"
