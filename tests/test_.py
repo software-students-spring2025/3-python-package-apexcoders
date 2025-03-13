@@ -11,7 +11,7 @@ class Tests:
         assert actual in name_list
 
         # Test: Input is not a list
-        actual = spin_the_bottle("Rin, Elena, Tony, Corrine")  # Call your function with an invalid input
+        actual = spin_the_bottle("Rin, Elena, Tony, Corrine") 
         assert actual == "Error: The name list must be a list.", "Should return error for non-list input"
 
         # Test: List with invalid entries (None, numbers, empty strings)
@@ -43,7 +43,9 @@ class Tests:
         #Test: With invalid input
         t = "tester"
         actual = countdown(t)
-        assert actual == "Seconds must be a non-negative integer."
+        # assert actual == "Seconds must be a non-negative integer."
+        assert actual == "intended to test fail cases in github actions. Will revise later"
+
 
         #Test: With invalid input
         t = None
