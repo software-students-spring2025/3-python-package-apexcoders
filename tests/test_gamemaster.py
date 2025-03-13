@@ -1,5 +1,5 @@
 import pytest, datetime, random
-from src.game_master.game_master import spin_the_bottle, countdown, random_multiple_people_punishment
+from game_master import game_master
 
 
 class Tests:
