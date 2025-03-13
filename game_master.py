@@ -4,10 +4,10 @@ import random, time, datetime
 def spin_the_bottle(name_list):
     # Validation
     if not isinstance(name_list, list):
-        return("Error: The name list must be a list.")
+        return "Error: The name list must be a list."
 
     if not all((isinstance(name, str) and name.strip()) for name in name_list):
-        return("Error: Names in the name list must be a non-empty string.")
+        return "Error: Names in the name list must be a non-empty string."
 
     stripped_names = []
     for name in name_list:
@@ -15,10 +15,10 @@ def spin_the_bottle(name_list):
             stripped_names.append(name.strip())
 
     if len(stripped_names) <= 0:
-        return("Error: Name list must contain one or more person.")
+        return "Error: Name list must contain one or more person."
 
     if len(set(stripped_names)) < len(stripped_names):
-        return("Error: Duplicate names are not allowed. Please provide unique names.")
+        return "Error: Duplicate names are not allowed. Please provide unique names."
 
     # Function
     selected_people = random.choice(name_list)
@@ -29,9 +29,9 @@ def spin_the_bottle(name_list):
 def countdown(seconds):
     # Validation
     if not isinstance(seconds, int):
-        return("Seconds must be a non-negative integer.")
+        return "Seconds must be a non-negative integer."
     if seconds <= 0:
-        return("Seconds must be a non-negative integer.")
+        return "Seconds must be a non-negative integer."
 
     # Function
     while seconds:
@@ -55,7 +55,7 @@ def random_multiple_people_punishment(num, name_list):
         return "Error: Please provide a list of non-empty strings."
 
     stripped_names = [name.strip() for name in name_list if name.strip()]
-    
+
     # Check for duplicates
     if len(set(stripped_names)) < len(stripped_names):
         return "Error: Duplicate names are not allowed. Please provide unique names."
@@ -71,7 +71,7 @@ def random_multiple_people_punishment(num, name_list):
         "Do 10 jumping jacks!",
         "Sing a song!",
         "Wear socks on your hands for the next round!",
-        "Speak in an accent for 5 minutes!"
+        "Speak in an accent for 5 minutes!",
     ]
 
     selected_people = random.sample(stripped_names, num)
@@ -94,4 +94,3 @@ def show_help():
     7. countdown_timer(30) - Starts a 30-second countdown. 
     """
     print(help_text)
-
