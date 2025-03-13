@@ -12,20 +12,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+      - name: Install Python, pipenv and Pipfile packages
+        uses: kojoru/prepare-pipenv@v1
         with:
           python-version: ${{ matrix.python-version }}
-
-      - name: Install pipenv
-        run: pip install pipenv
-
-      - name: Install dependencies
-        run: pipenv sync --dev  
-
-      - name: Install pytest
-        run: pipenv install pytest  
-
-      - name: Run tests with pytest
-        run: pipenv run pytest -v  
+      - name: Turn on 'editable' mode
+        run: |
+          pipenv install -e .
+      - name: Test with pytest
+        run: |
+          pipenv install pytest
+          pipenv --venv
+          pipenv run python -m pytest

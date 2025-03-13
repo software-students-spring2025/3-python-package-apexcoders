@@ -8,6 +8,8 @@ gitcommitlogger = "*"
 requests = "*"
 pytz = "*"
 python-dateutil = "*"
+pytest = "*"
+game_master = {file = ".", editable = true}
 
 [dev-packages]
 
