@@ -1,4 +1,4 @@
-name: CI / CD
+name: CI
 
 on: [push, pull_request]
 
@@ -11,19 +11,27 @@ jobs:
         python-version: ["3.9", "3.11"]
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Python, Pipenv, and Dependencies
-        uses: kojoru/prepare-pipenv@v1
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Ensure Pipfile is Recognized
-        run: ls -l && cat Pipfile  # Debugging step to check if Pipfile exists
+      - name: Install pipenv
+        run: python3 -m pip install --user pipenv
 
-      - name: Install Dependencies in Editable Mode
-        run: pipenv install --dev -e .
+      - name: Verify Pipfile Exists (Debug Step)
+        run: |
+          ls -l  # List files to confirm Pipfile is present
+          cat Pipfile  # Check Pipfile contents
 
-      - name: Run Tests with Pytest
+      - name: Set PIPENV_PIPFILE Environment Variable
+        run: echo "PIPENV_PIPFILE=$(pwd)/Pipfile" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: pipenv install --dev  # Use install instead of sync for safety
+
+      - name: Run tests with pytest
         run: pipenv run pytest -v
