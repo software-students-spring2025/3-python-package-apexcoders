@@ -55,10 +55,7 @@ class Tests:
         # Test: With invalid input
         t = "tester"
         actual = countdown(t)
-        # assert actual == "Seconds must be a non-negative integer."
-        assert (
-            actual == "intended to test fail cases in github actions. Will revise later"
-        )
+        assert actual == "Seconds must be a non-negative integer."
 
         # Test: With invalid input
         t = None
