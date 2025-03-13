@@ -34,7 +34,7 @@ class Tests:
         actual = spin_the_bottle([])
         assert (
             actual == "Error: Name list must contain one or more person."
-        ), "Should return error for zero punishments"
+        ), "Should return error for empty list"
 
         # Test: Duplicate names
         actual = spin_the_bottle(["Rin", "Rin", "Elena", "Tony"])
