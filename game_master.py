@@ -1,24 +1,49 @@
 import random, time, datetime
 
+
 def spin_the_bottle(name_list):
-    if len(name_list)<=0:
-        raise ValueError("name_list must contain one or more person.")
+    # Validation
+    if not isinstance(name_list, list):
+        return "Error: The name list must be a list."
+
+    if not all((isinstance(name, str) and name.strip()) for name in name_list):
+        return "Error: Names in the name list must be a non-empty string."
+
+    stripped_names = []
+    for name in name_list:
+        if name.strip():
+            stripped_names.append(name.strip())
+
+    if len(stripped_names) <= 0:
+        return "Error: Name list must contain one or more person."
+
+    if len(set(stripped_names)) < len(stripped_names):
+        return "Error: Duplicate names are not allowed. Please provide unique names."
+
+    # Function
     selected_people = random.choice(name_list)
-    
+
     return f"{selected_people} is selected!"
 
+
 def countdown(seconds):
-    if seconds < 0:
-        raise ValueError("Seconds must be a non-negative number.")
+    # Validation
+    if not isinstance(seconds, int):
+        return "Seconds must be a non-negative integer."
+    if seconds <= 0:
+        return "Seconds must be a non-negative integer."
+
+    # Function
     while seconds:
         mins, secs = divmod(seconds, 60)
-        timer = '{:02d}:{:02d}'.format(mins, secs)
+        timer = "{:02d}:{:02d}".format(mins, secs)
         print(timer)
         time.sleep(1)
         seconds -= 1
-    print('Time is up!')
-   
-    return(datetime.datetime.now())
+    print("Time is up!")
+
+    return datetime.datetime.now()
+
 
 def random_multiple_people_punishment(num, name_list):
     # Validate if name_list is a list
@@ -30,7 +55,7 @@ def random_multiple_people_punishment(num, name_list):
         return "Error: Please provide a list of non-empty strings."
 
     stripped_names = [name.strip() for name in name_list if name.strip()]
-    
+
     # Check for duplicates
     if len(set(stripped_names)) < len(stripped_names):
         return "Error: Duplicate names are not allowed. Please provide unique names."
@@ -46,12 +71,12 @@ def random_multiple_people_punishment(num, name_list):
         "Do 10 jumping jacks!",
         "Sing a song!",
         "Wear socks on your hands for the next round!",
-        "Speak in an accent for 5 minutes!"
+        "Speak in an accent for 5 minutes!",
     ]
 
     selected_people = random.sample(stripped_names, num)
     punishment = random.choice(punishments)
-    
+
     return f"{', '.join(selected_people)} must {punishment}"
 
 
@@ -69,13 +94,3 @@ def show_help():
     7. countdown_timer(30) - Starts a 30-second countdown. 
     """
     print(help_text)
-
-
-
-
-
-# Always execute this for testing    
-show_help()
-result = random_multiple_people_punishment(2, ["a"])
-print(result)
-
