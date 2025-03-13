@@ -150,3 +150,5 @@ cython_debug/
 
 #Rin's personal testing
 rins_test.py
+
+main.py

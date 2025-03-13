@@ -5,11 +5,12 @@ name = "pypi"
 
 [packages]
 gitcommitlogger = "*"
-requests = "*"
 pytz = "*"
 python-dateutil = "*"
+requests = "*"
 
 [dev-packages]
+pytest = "*"
 
 [requires]
 python_version = "3"
