@@ -72,6 +72,8 @@ def show_help():
 
 
 
+
+
 # Always execute this for testing    
 show_help()
 result = random_multiple_people_punishment(2, ["a"])
