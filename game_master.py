@@ -77,7 +77,3 @@ show_help()
 result = random_multiple_people_punishment(2, ["a"])
 print(result)
 
-
-
-
- 
