@@ -1,6 +1,6 @@
 name: CI / CD
 
-on: [push]
+on: [pull]
 
 jobs:
   build:
@@ -9,17 +9,12 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.9", "3.11"]
-
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+      - name: Install Python, pipenv and Pipfile packages
+        uses: kojoru/prepare-pipenv@v1
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          export PIPENV_PIPFILE=./Pipfile
-          pipenv install
       - name: Turn on 'editable' mode
         run: |
           pipenv install -e .
