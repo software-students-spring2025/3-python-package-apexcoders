@@ -4,10 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+<<<<<<< HEAD
 gitcommitlogger = "*"
 pytz = "*"
 python-dateutil = "*"
 requests = "*"
+=======
+build = "*"
+pytest = "*"
+game_master = {file = ".", editable = true}
+>>>>>>> 7ef61db990ceef78659e53c605b604b2d0fbbadb
 
 [dev-packages]
 pytest = "*"

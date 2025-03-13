@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "game_master"
+description = "An assisting tool for helping people to party games."
+version = "0.1.1"
+authors = [
+    { name="Tony Zhao", email="sz3822@nyu.edu" },
+    { name="Rin Qi", email="yq2290@nyu.edu" },
+    { name="Corrine Huang", email="ch3807@nyu.edu" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+keywords = ["python", "package", "build", "random"]
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.urls]
+"Homepage" = "https://github.com/software-students-spring2025/3-python-package-apexcoders"
+"Repository" = "https://github.com/software-students-spring2025/3-python-package-apexcoders.git"
+
+[project.scripts]
+game_master = "game_master.__main__:main"
