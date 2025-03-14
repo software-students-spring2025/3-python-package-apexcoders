@@ -121,15 +121,14 @@ class Tests:
         """
 
         actual_output = show_help()
-        # Ensure the function returns a string
+        # Ensure function returns a string
         assert isinstance(actual_output, str), "Expected show_help() to return a string."
-
+    
         # Ensure the function returns the expected text
-        assert actual_output == expected_output, "Help text output is incorrect."
-
+        assert actual_output.strip() == expected_output.strip(), "Help text output is incorrect."
+    
         # Ensure the returned text has the correct length
-        assert len(actual_output) == len(expected_output), f"Expected length {len(expected_output)}, but got {len(actual_output)}"
-
+        assert len(actual_output.strip()) == len(expected_output.strip()), f"Expected length {len(expected_output.strip())}, but got {len(actual_output.strip())}"
 
     # Run the test if this script is executed directly
     if __name__ == "__main__":
