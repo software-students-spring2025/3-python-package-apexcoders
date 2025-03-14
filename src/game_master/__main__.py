@@ -10,7 +10,7 @@ def main():
     """
     Get some wise text and print it out.
     """
-    # line = game.get()  # get a line of text
+
     print("Hi i am in main")  # print it out
 
 
