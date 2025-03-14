@@ -106,7 +106,7 @@ class Tests:
         ), "Should return error for duplicate names"
 
     
-    def test_show_help():
+    def test_show_help(self):
         """Test if show_help() returns the correct help text."""
 
         expected_output = """
