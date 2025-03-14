@@ -91,4 +91,4 @@ def show_help():
     6. spin_the_bottle(["Rin", "Elena", "Tony", "Corrine"]) - Picks a random person for a challenge. 
     7. countdown_timer(30) - Starts a 30-second countdown. 
     """
-    print(help_text)
+    return help_text.strip()
