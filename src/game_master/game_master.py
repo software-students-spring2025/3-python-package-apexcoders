@@ -126,6 +126,48 @@ def random_game_idea(num_players):
     #select a random game based on given number of players
     return random.choice(games[num_players])
 
+def random_dare(difficulty):
+    # Validation
+    if not isinstance(difficulty, str):
+        return "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+    if difficulty not in {"easy","medium","hard"}:
+        return "Error: The level of difficulty entered must be easy, medium or hard"
+    
+    #function: returns a random dare task based on the level of diffivulty
+    dares = {
+        "easy": [
+            "Do 10 jumping jacks.",
+            "Dance for 30 seconds without music.",
+            "Say a tongue twister three times fast.",
+            "Spin around 10 times and try to walk straight.",
+            "Hold a silly face for 1 minute.",
+            "Talk in a funny accent for 2 minutes.",
+            "Act like a monkey for the next 3 turns.",
+            "Tell a joke and make everyone laugh."
+        ],
+        "medium": [
+            "Meow like a cat for 30 seconds.",
+            "Call a friend and sing them a song.",
+            "Let another player draw something on your face with a marker.",
+            "Send a funny text to the 5th person in your contact list.",
+            "Walk like a duck for the next 3 minutes.",
+            "Let another player post something on your social media.",
+            "Do a freestyle rap about the group for 30 seconds.",
+            "Mimic a celebrity and let others guess who you are."
+        ],
+        "hard": [
+            "Drink a mixed drink created by other players.",
+            "Let someone else change your profile picture for 10 minutes.",
+            "Act like a famous movie character until your next turn.",
+            "Send a voice note of you singing an embarrassing song to a friend.",
+            "Wear socks on your hands for the rest of the game.",
+            "Do 20 push-ups or take a shot.",
+            "Reveal the last text message you sent.",
+            "Call a random contact and confess your love to them."
+        ],
+    }
+    return random.choice(dares.get(difficulty))
+
 
 def show_help():
     help_text = """
