@@ -169,6 +169,51 @@ def random_dare(difficulty):
     return random.choice(dares.get(difficulty))
 
 
+def who_pays_the_bill(names_list):
+    """
+    Randomly select one person from the provided list of names to pay the bill.
+
+    Args:
+        names_list (list of str): List of players' names.
+
+    Returns:
+        str or None: The chosen player's name, or None if the list is empty.
+    """
+    if not names_list:
+        return None
+    # Simulate a roulette selection by randomly choosing a name
+    return random.choice(names_list)
+
+def random_game_idea(players=4):
+    """
+    Generate a random game idea based on the number of players.
+
+    Args:
+        players (int): Number of players. Defaults to 4.
+
+    Returns:
+        str: A recommended game idea for the specified number of players.
+    """
+    if players < 2:
+        return "At least two players are required to play."
+    
+    # Define a list of game ideas suitable for a drinking game theme
+    game_ideas = [
+        "Truth or Dare",
+        "Never Have I Ever",
+        "Spin the Bottle",
+        "Beer Pong",
+        "Kings",
+        "Flip Cup",
+        "Drinking Roulette",
+        "Card Game Challenge"
+    ]
+    
+    idea = random.choice(game_ideas)
+    return f"Game for {players} players: {idea}"
+
+
+
 def show_help():
     help_text = """
         Available Functions:
