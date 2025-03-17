@@ -67,11 +67,11 @@ def random_multiple_people_punishment(num, name_list):
         return f"Error: Cannot punish {num} people when only {len(stripped_names)} names are available."
 
     punishments = [
-        "Drink a shot!",
-        "Do 10 jumping jacks!",
-        "Sing a song!",
-        "Wear socks on your hands for the next round!",
-        "Speak in an accent for 5 minutes!",
+        "drink a shot!",
+        "do 10 jumping jacks!",
+        "sing a song!",
+        "wear socks on your hands for the next round!",
+        "speak in an accent for 5 minutes!",
     ]
 
     selected_people = random.sample(stripped_names, num)
