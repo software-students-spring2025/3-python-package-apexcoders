@@ -45,9 +45,6 @@ def main():
     elif args.dare:
         print(random_dare(args.dare))
 
-    elif args.help_with_example:
-        print(help())
-
     else:
         print("Use --help to see available options.")
 
