@@ -23,6 +23,8 @@ def main():
     parser.add_argument('--punish', nargs="+", help="Punish a random number of players from a list.")
     parser.add_argument("--game", type=int, help="Suggest a random game for 2, 4, 6, or 8 players.")
     parser.add_argument("--dare", type=str, help="Generate a random dare based on the level of difficulty(easy, medium, hard).")
+    parser.add_argument("--help", action="store_true", help="Show available functions.")
+
 
     args = parser.parse_args()
 
