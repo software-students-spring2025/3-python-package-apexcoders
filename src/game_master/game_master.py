@@ -79,6 +79,95 @@ def random_multiple_people_punishment(num, name_list):
 
     return f"{', '.join(selected_people)} must {punishment}"
 
+def random_game_idea(num_players):
+    # Validation
+    if not isinstance(num_players, int):
+        return "Error: The number of players involved in the game must be 2,4,6 or 8. Only numbers are allowed."
+    if num_players <= 0:
+        return "Error: The number of players involved in the game must be 2,4,6 or 8. Negative number are not allowed."
+    if num_players not in {2,4,6,8}:
+        return "Error: The number of players involved in the game must be 2,4,6 or 8."
+
+    #Function: Returns a game idea based on the number of players.
+    games = {
+        2: [
+            "Chess - A strategic board game.",
+            "Checkers - A classic game of capturing pieces.",
+            "Card Duel - Try out a fast-paced card game.",
+            "Tic-Tac-Toe - Simple but intense!",
+            "Jenga - Test your steady hands.",
+            "Rock, Paper, Scissors - Best of 5 wins!"
+        ],
+        4: [
+            "Werewolf - A social deduction game.",
+            "UNO - A fun and chaotic card game.",
+            "Codenames - Work in teams to find secret words.",
+            "Exploding Kittens - A hilarious card game.",
+            "Pictionary - Draw and guess words.",
+            "Jenga - Can you survive the tower collapse?"
+        ],
+        6: [
+            "Monopoly - The classic property trading game.",
+            "Spyfall - Find out who the spy is!",
+            "Hidden Role Party - A game of deception and deduction.",
+            "Dixit - A game of imagination and storytelling.",
+            "Coup - Bluff your way to victory!",
+            "The Resistance - Can you find the traitors?"
+        ],
+        8: [
+            "Mafia - A game of deception and strategy.",
+            "Pictionary - A fun drawing and guessing game.",
+            "Charades - Act out words without speaking.",
+            "Team Trivia - Test your general knowledge in teams.",
+            "Telestrations - A hilarious drawing game.",
+            "Murder Mystery - Solve the crime as a team."
+        ]
+    }
+    #select a random game based on given number of players
+    return random.choice(games[num_players])
+
+def random_dare(difficulty):
+    # Validation
+    if not isinstance(difficulty, str):
+        return "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+    if difficulty not in {"easy","medium","hard"}:
+        return "Error: The level of difficulty entered must be easy, medium or hard"
+    
+    #function: returns a random dare task based on the level of diffivulty
+    dares = {
+        "easy": [
+            "Do 10 jumping jacks.",
+            "Dance for 30 seconds without music.",
+            "Say a tongue twister three times fast.",
+            "Spin around 10 times and try to walk straight.",
+            "Hold a silly face for 1 minute.",
+            "Talk in a funny accent for 2 minutes.",
+            "Act like a monkey for the next 3 turns.",
+            "Tell a joke and make everyone laugh."
+        ],
+        "medium": [
+            "Meow like a cat for 30 seconds.",
+            "Call a friend and sing them a song.",
+            "Let another player draw something on your face with a marker.",
+            "Send a funny text to the 5th person in your contact list.",
+            "Walk like a duck for the next 3 minutes.",
+            "Let another player post something on your social media.",
+            "Do a freestyle rap about the group for 30 seconds.",
+            "Mimic a celebrity and let others guess who you are."
+        ],
+        "hard": [
+            "Drink a mixed drink created by other players.",
+            "Let someone else change your profile picture for 10 minutes.",
+            "Act like a famous movie character until your next turn.",
+            "Send a voice note of you singing an embarrassing song to a friend.",
+            "Wear socks on your hands for the rest of the game.",
+            "Do 20 push-ups or take a shot.",
+            "Reveal the last text message you sent.",
+            "Call a random contact and confess your love to them."
+        ],
+    }
+    return random.choice(dares.get(difficulty))
+
 
 def show_help():
     help_text = """
