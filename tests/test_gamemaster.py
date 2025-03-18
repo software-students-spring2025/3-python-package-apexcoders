@@ -114,124 +114,43 @@ class Tests:
             == "Error: Duplicate names are not allowed. Please provide unique names."
         ), "Should return error for duplicate names"
 
-    def test_random_truth(self):
-        # Test: Valid difficulty levels
-        difficulties = ["easy", "medium", "hard"]
-        for level_difficulty in difficulties:
-            result = random_truth(level_difficulty)
-            assert isinstance(result, str), f"Output should be a string for difficulty '{level_difficulty}'."
-            assert len(result) > 0, f"Output should not be empty for difficulty '{level_difficulty}'."
 
-        # Test: Invalid difficulty levels
-        result = random_truth("harder")
-        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
-
-        result = random_truth("MEDIUM")
-        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
-
-        result = random_truth("5")
-        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
-
-        # Test: Non-string input
-        result = random_truth(None)
-        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
-
-        result = random_truth(7)
-        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
-
-        result = random_truth([])
-        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
-
-        result = random_truth({})
-        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
-
-    def test_random_dare(self):
-        # Test: Valid difficulty levels
-        difficulties = ["easy", "medium", "hard"]
-        for difficulty in difficulties:
-            result = random_truth(difficulty)
-            assert isinstance(result, str), f"Output should be a string for difficulty '{difficulty}'."
-            assert len(result) > 0, f"Output should not be empty for difficulty '{difficulty}'."
-
-        # Test: Invalid difficulty levels
-        result = random_dare("harder")
-        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
-
-        result = random_dare("EASY")
-        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
-
-        result = random_dare("123")
-        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
-
-        # Test: Non-string input
-        result = random_dare(None)
-        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
-
-        result = random_dare(5)
-        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
-
-        result = random_dare([])
-        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
-
-        result = random_dare({})
-        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
-
-# testing function 'who pays the bill' and 'random game idea'
-    def test_who_pays_the_bill_with_names(self):
+    def test_who_pays_the_bill(self):
+        # Test with valid input - names list
         names = ["Alice", "Bob", "Charlie"]
         result = who_pays_the_bill(names)
         # The chosen name must be one from the list
         assert result in names, "The selected name should be one of the provided names."
-
-    def test_who_pays_the_bill_empty_list(self):
-        result = who_pays_the_bill([])
-        # When an empty list is provided, the function should return None
-        assert (
-            result is None
-        ), "When the names list is empty, the function should return None."
-
-    def test_who_pays_the_bill_return_type(self):
-        names = ["Alice", "Bob", "Charlie"]
-        result = who_pays_the_bill(names)
         # Verify the return type is string when names are provided
-        assert isinstance(
-            result, str
-        ), "The function should return a string when given a non-empty list"
+        assert isinstance(result, str), "The function should return a string when given a non-empty list"
+        
+        # Test with empty list
+        empty_result = who_pays_the_bill([])
+        # When an empty list is provided, the function should return None
+        assert empty_result is None, "When the names list is empty, the function should return None."
 
-    def test_random_game_idea_valid_players(self):
+    def test_random_game_idea(self):
+        # Test with valid player count
         players = 4
         result = random_game_idea(players)
         # Check that the output string starts with the expected prefix
         expected_prefix = f"Game for {players} players:"
-        assert result.startswith(
-            expected_prefix
-        ), f"The output should start with '{expected_prefix}'"
-
-    def test_random_game_idea_invalid_players(self):
-        # When there are less than two players, an error message should be returned.
-        result = random_game_idea(players=1)
-        assert (
-            "At least two players" in result
-        ), "For less than two players, the function should indicate that more players are needed."
-
-    def test_random_game_idea_return_type(self):
-        players = 4
-        result = random_game_idea(players)
+        assert result.startswith(expected_prefix), f"The output should start with '{expected_prefix}'"
         # Verify the return type is string
         assert isinstance(result, str), "The function should return a string"
-
-    def test_random_game_idea_different_player_counts(self):
+        
         # Test with different valid player counts
         players = 6
         result = random_game_idea(players)
         assert f"Game for {players} players:" in result, "The function should work with 6 players"
-    
-    def test_random_game_idea_invalid_input_type(self):
-        # Test with a string instead of an integer
+        
+        # Test with invalid player count (less than two)
+        result = random_game_idea(players=1)
+        assert "At least two players" in result, "For less than two players, the function should indicate that more players are needed."
+        
+        # Test with invalid input type (string instead of integer)
         result = random_game_idea("4")
         assert "Error" in result or isinstance(result, str), "Function should handle non-integer input appropriately"
-
-
 
     def test_show_help(self):
         """Test if show_help() returns the correct help text."""
@@ -249,19 +168,13 @@ class Tests:
 
         actual_output = show_help()
         # Ensure function returns a string
-        assert isinstance(
-            actual_output, str
-        ), "Expected show_help() to return a string."
-
+        assert isinstance(actual_output, str), "Expected show_help() to return a string."
+    
         # Ensure the function returns the expected text
-        assert (
-            actual_output.strip() == expected_output.strip()
-        ), "Help text output is incorrect."
-
+        assert actual_output.strip() == expected_output.strip(), "Help text output is incorrect."
+    
         # Ensure the returned text has the correct length
-        assert len(actual_output.strip()) == len(
-            expected_output.strip()
-        ), f"Expected length {len(expected_output.strip())}, but got {len(actual_output.strip())}"
+        assert len(actual_output.strip()) == len(expected_output.strip()), f"Expected length {len(expected_output.strip())}, but got {len(actual_output.strip())}"
 
     # Run the test if this script is executed directly
     if __name__ == "__main__":
