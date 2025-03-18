@@ -245,6 +245,7 @@ class Tests:
         result = random_dare({})
         assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
 
+<<<<<<< Updated upstream
 
 
    def test_who_pays_the_bill(self):
@@ -283,6 +284,55 @@ class Tests:
         # Test with invalid input type (string instead of integer)
         result = random_game_idea("4")
         assert "Error" in result or isinstance(result, str), "Function should handle non-integer input appropriately"
+=======
+    def who_pays_the_bill(names_list):
+        """
+        Randomly select one person from the provided list of names to pay the bill.
+
+        Args:
+            names_list (list of str): List of players' names.
+
+        Returns:
+            str or None: The chosen player's name, or None if the list is empty.
+        """
+        if not names_list:
+            return None
+        # Simulate a roulette selection by randomly choosing a name
+        return random.choice(names_list)
+
+
+    def random_game_idea(players=4):
+        """
+        Generate a random game idea based on the number of players.
+
+        Args:
+            players (int): Number of players. Defaults to 4.
+
+        Returns:
+            str: A recommended game idea for the specified number of players.
+        """
+        # Add type checking for players parameter
+        if not isinstance(players, int):
+            return "Error: The number of players must be an integer."
+            
+        if players < 2:
+            return "At least two players are required to play."
+
+        # Define a list of game ideas suitable for a drinking game theme
+        game_ideas = [
+            "Truth or Dare",
+            "Never Have I Ever",
+            "Spin the Bottle",
+            "Beer Pong",
+            "Kings",
+            "Flip Cup",
+            "Drinking Roulette",
+            "Card Game Challenge",
+        ]
+
+        idea = random.choice(game_ideas)
+        return f"Game for {players} players: {idea}"
+>>>>>>> Stashed changes
 
     def test_show_help(self):
         """Test if show_help() returns the correct help text."""
