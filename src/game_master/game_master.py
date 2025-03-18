@@ -223,7 +223,7 @@ def show_help():
         2. who_pays_the_bill(["Rin", "Elena", "Tony", "Corrine"]) - Randomly picks a person to pay the bill. 
         3. random_game_idea(4) - Suggests a random game for 4 players. 
         4. random_dare("medium") - Generates a random dare task. Choose from: "easy", "medium", or "hard".
-        5. random_truth_question("medium") - Generates a truth question. Choose from: "easy", "medium", or "hard".
+        5. random_truth("medium") - Generates a truth question. Choose from: "easy", "medium", or "hard".
         6. spin_the_bottle(["Rin", "Elena", "Tony", "Corrine"]) - Picks a random person for a challenge. 
         7. countdown_timer(30) - Starts a 30-second countdown. 
         """
