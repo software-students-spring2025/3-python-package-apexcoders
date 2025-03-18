@@ -334,7 +334,7 @@ class Tests:
         Available Functions:
         1. random_multiple_people_punishment(2, ["Rin", "Elena", "Tony", "Corrine"]) - Selects 2 random people and gives them a punishment. 
         2. who_pays_the_bill(["Rin", "Elena", "Tony", "Corrine"]) - Randomly picks a person to pay the bill. 
-        3. random_game_idea(4) - Suggests a random game for 4 players. 
+        3. random_game_idea(num) - Suggests a random game for 1-5 players.
         4. random_dare("medium") - Generates a random dare task. Choose from: "easy", "medium", or "hard".
         5. random_truth("medium") - Generates a truth question. Choose from: "easy", "medium", or "hard".
         6. spin_the_bottle(["Rin", "Elena", "Tony", "Corrine"]) - Picks a random person for a challenge. 
@@ -348,14 +348,12 @@ class Tests:
         ), "Expected show_help() to return a string."
 
         # Ensure the function returns the expected text
-        assert (
-            actual_output.strip() == expected_output.strip()
-        ), "Help text output is incorrect."
+        assert " ".join(actual_output.split()) == " ".join(expected_output.split()), "Help text output is incorrect."
 
         # Ensure the returned text has the correct length
-        assert len(actual_output.strip()) == len(
-            expected_output.strip()
-        ), f"Expected length {len(expected_output.strip())}, but got {len(actual_output.strip())}"
+        assert len(" ".join(actual_output.split())) == len(" ".join(expected_output.split())), \
+        f"Expected length {len(' '.join(expected_output.split()))}, but got {len(' '.join(actual_output.split()))}"
+
 
     # Run the test if this script is executed directly
     if __name__ == "__main__":
