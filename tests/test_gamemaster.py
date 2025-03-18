@@ -1,5 +1,5 @@
 import pytest, datetime, random
-from src.game_master.game_master import spin_the_bottle, countdown, random_multiple_people_punishment, show_help, who_pays_the_bill, random_game_idea
+from src.game_master.game_master import spin_the_bottle, countdown, random_multiple_people_punishment, show_help, who_pays_the_bill, random_game_idea, random_truth, random_dare
 
 
 class Tests:
@@ -105,6 +105,67 @@ class Tests:
             == "Error: Duplicate names are not allowed. Please provide unique names."
         ), "Should return error for duplicate names"
 
+    def test_random_truth(self):
+        # Test: Valid difficulty levels
+        difficulties = ["easy", "medium", "hard"]
+        for level_difficulty in difficulties:
+            result = random_truth(level_difficulty)
+            assert isinstance(result, str), f"Output should be a string for difficulty '{level_difficulty}'."
+            assert len(result) > 0, f"Output should not be empty for difficulty '{level_difficulty}'."
+
+        # Test: Invalid difficulty levels
+        result = random_truth("harder")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        result = random_truth("MEDIUM")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        result = random_truth("5")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        # Test: Non-string input
+        result = random_truth(None)
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_truth(7)
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_truth([])
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_truth({})
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+    def test_random_dare(self):
+        # Test: Valid difficulty levels
+        difficulties = ["easy", "medium", "hard"]
+        for difficulty in difficulties:
+            result = random_truth(difficulty)
+            assert isinstance(result, str), f"Output should be a string for difficulty '{difficulty}'."
+            assert len(result) > 0, f"Output should not be empty for difficulty '{difficulty}'."
+
+        # Test: Invalid difficulty levels
+        result = random_dare("harder")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        result = random_dare("EASY")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        result = random_dare("123")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        # Test: Non-string input
+        result = random_dare(None)
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_dare(5)
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_dare([])
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_dare({})
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
 
     def test_who_pays_the_bill_with_names(self):
         names = ["Alice", "Bob", "Charlie"]
