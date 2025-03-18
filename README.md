@@ -1,3 +1,5 @@
+![CI/CD Build & Test](https://github.com/software-students-spring2025/3-python-package-apexcoders/actions/workflows/ci.yml/badge.svg)
+
 # Game Master
 
 
