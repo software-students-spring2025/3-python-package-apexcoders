@@ -8,8 +8,10 @@ from .game_master import (
     spin_the_bottle,
     countdown,
     random_multiple_people_punishment,
-    random_game_idea,
+    who_pays_the_bill,
     random_dare,
+    random_truth,
+    random_game_idea,
 )
 
 
@@ -57,6 +59,20 @@ def main():
         "Example: python -m game_master --dare hard",
     )
 
+    parser.add_argument(
+        "--truth",
+        type=str,
+        help="Generate a random truth based on difficulty level (easy, medium, hard).\n"
+        "Example: python -m game_master --truth hard",
+    )
+
+    parser.add_argument(
+        "--pay",
+        type=str,
+        help="Choose from the provided list of names to pay the bill.\n"
+        "Example: python -m game_master --pay Alice, Bob, Peter, Charlie",
+    )
+
     args = parser.parse_args()
     try:
         if args.bottle:
@@ -77,6 +93,12 @@ def main():
 
         elif args.dare:
             print(random_dare(args.dare))
+
+        elif args.truth:
+            print(random_truth(args.truth))
+
+        elif args.pay:
+            print(who_pays_the_bill(args.pay))
 
         else:
             print("Use --help to see available options.")
