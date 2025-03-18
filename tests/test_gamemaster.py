@@ -115,8 +115,140 @@ class Tests:
         ), "Should return error for duplicate names"
 
 
-    def test_who_pays_the_bill(self):
-        # Test with valid input - names list
+
+
+    def test_random_truth(self):
+        # Test: Valid difficulty levels
+        difficulties = ["easy", "medium", "hard"]
+        truths = {
+        "easy": [
+            "What is your favorite food?",
+            "Do you have a secret talent?",
+            "What is the last movie you watched?",
+            "Have you ever sung in the shower?",
+            "Who is your celebrity crush?",
+            "What is your favorite holiday destination?",
+            "Have you ever had a funny dream? Describe it!",
+            "What is your guilty pleasure?"
+        ],
+        "medium": [
+            "What is one thing you regret doing?",
+            "Have you ever lied to get out of trouble?",
+            "What is the most embarrassing thing that has happened to you?",
+            "What is your worst habit?",
+            "What is the biggest secret you have kept from your parents?",
+            "If you had to change one thing about yourself, what would it be?",
+            "What is the weirdest thing you've ever eaten?",
+            "Have you ever had a crush on a teacher?"
+        ],
+        "hard": [
+            "What is the biggest lie you have ever told?",
+            "Have you ever cheated on a test or in a game?",
+            "What is the most illegal thing you have ever done?",
+            "What is something you've never told anyone?",
+            "Have you ever betrayed a friend's trust? What happened?",
+            "What is the biggest mistake you have made in a relationship?",
+            "What is the one thing you would never admit to your parents?",
+            "Have you ever spread a rumor about someone?"
+        ],
+    }
+        for difficulty in difficulties:
+            result = random_truth(difficulty)
+            assert isinstance(result, str), f"Output should be a string for difficulty '{difficulty}'."
+            assert len(result) > 0, f"Output should not be empty for difficulty '{difficulty}'."
+            assert any(result == truth for truth in truths[difficulty]), f"Output should match for a known truth in '{difficulty}'."
+
+        # Test: Invalid difficulty levels
+        result = random_truth("harder")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        result = random_truth("MEDIUM")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        result = random_truth("5")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        # Test: Non-string input
+        result = random_truth(None)
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_truth(7)
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_truth([])
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_truth({})
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+    def test_random_dare(self):
+        # Test: Valid difficulty levels
+        difficulties = ["easy", "medium", "hard"]
+        dares = {
+        "easy": [
+            "Do 10 jumping jacks.",
+            "Dance for 30 seconds without music.",
+            "Say a tongue twister three times fast.",
+            "Spin around 10 times and try to walk straight.",
+            "Hold a silly face for 1 minute.",
+            "Talk in a funny accent for 2 minutes.",
+            "Act like a monkey for the next 3 turns.",
+            "Tell a joke and make everyone laugh.",
+        ],
+        "medium": [
+            "Meow like a cat for 30 seconds.",
+            "Call a friend and sing them a song.",
+            "Let another player draw something on your face with a marker.",
+            "Send a funny text to the 5th person in your contact list.",
+            "Walk like a duck for the next 3 minutes.",
+            "Let another player post something on your social media.",
+            "Do a freestyle rap about the group for 30 seconds.",
+            "Mimic a celebrity and let others guess who you are.",
+        ],
+        "hard": [
+            "Drink a mixed drink created by other players.",
+            "Let someone else change your profile picture for 10 minutes.",
+            "Act like a famous movie character until your next turn.",
+            "Send a voice note of you singing an embarrassing song to a friend.",
+            "Wear socks on your hands for the rest of the game.",
+            "Do 20 push-ups or take a shot.",
+            "Reveal the last text message you sent.",
+            "Call a random contact and confess your love to them.",
+        ],
+    }
+        for difficulty in difficulties:
+            result = random_dare(difficulty)
+            assert isinstance(result, str), f"Output should be a string for difficulty '{difficulty}'."
+            assert len(result) > 0, f"Output should not be empty for difficulty '{difficulty}'."
+            assert any(result == dare for dare in dares[difficulty]), f"Output should match a known dare for '{difficulty}'."
+
+        # Test: Invalid difficulty levels
+        result = random_dare("harder")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        result = random_dare("EASY")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        result = random_dare("123")
+        assert result == "Error: The level of difficulty entered must be easy, medium or hard"
+
+        # Test: Non-string input
+        result = random_dare(None)
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_dare(5)
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_dare([])
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+        result = random_dare({})
+        assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+
+
+
+   def test_who_pays_the_bill(self):
+        # Test with valid input - names list      
         names = ["Alice", "Bob", "Charlie"]
         result = who_pays_the_bill(names)
         # The chosen name must be one from the list
@@ -161,7 +293,7 @@ class Tests:
         2. who_pays_the_bill(["Rin", "Elena", "Tony", "Corrine"]) - Randomly picks a person to pay the bill. 
         3. random_game_idea(4) - Suggests a random game for 4 players. 
         4. random_dare("medium") - Generates a random dare task. Choose from: "easy", "medium", or "hard".
-        5. random_truth_question("medium") - Generates a truth question. Choose from: "easy", "medium", or "hard".
+        5. random_truth("medium") - Generates a truth question. Choose from: "easy", "medium", or "hard".
         6. spin_the_bottle(["Rin", "Elena", "Tony", "Corrine"]) - Picks a random person for a challenge. 
         7. countdown_timer(30) - Starts a 30-second countdown. 
         """

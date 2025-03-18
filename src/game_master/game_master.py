@@ -183,37 +183,53 @@ def who_pays_the_bill(names_list):
     return random.choice(names_list)
 
 
-def random_game_idea(players=4):
-    """
-    Generate a random game idea based on the number of players.
+def random_game_idea(num_players):
+    # Validation
+    if not isinstance(num_players, int):
+        return "Error: The number of players involved in the game must be 2,4,6 or 8. Only numbers are allowed."
+    if num_players <= 0:
+        return "Error: The number of players involved in the game must be 2,4,6 or 8. Negative number are not allowed."
+    if num_players not in {2, 4, 6, 8}:
+        return "Error: The number of players involved in the game must be 2,4,6 or 8."
 
-    Args:
-        players (int): Number of players. Defaults to 4.
-
-    Returns:
-        str: A recommended game idea for the specified number of players.
-    """
-    # Add type checking for players parameter
-    if not isinstance(players, int):
-        return "Error: The number of players must be an integer."
-        
-    if players < 2:
-        return "At least two players are required to play."
-
-    # Define a list of game ideas suitable for a drinking game theme
-    game_ideas = [
-        "Truth or Dare",
-        "Never Have I Ever",
-        "Spin the Bottle",
-        "Beer Pong",
-        "Kings",
-        "Flip Cup",
-        "Drinking Roulette",
-        "Card Game Challenge",
-    ]
-
-    idea = random.choice(game_ideas)
-    return f"Game for {players} players: {idea}"
+    # Function: Returns a game idea based on the number of players.
+    games = {
+        2: [
+            "Chess - A strategic board game.",
+            "Checkers - A classic game of capturing pieces.",
+            "Card Duel - Try out a fast-paced card game.",
+            "Tic-Tac-Toe - Simple but intense!",
+            "Jenga - Test your steady hands.",
+            "Rock, Paper, Scissors - Best of 5 wins!",
+        ],
+        4: [
+            "Werewolf - A social deduction game.",
+            "UNO - A fun and chaotic card game.",
+            "Codenames - Work in teams to find secret words.",
+            "Exploding Kittens - A hilarious card game.",
+            "Pictionary - Draw and guess words.",
+            "Jenga - Can you survive the tower collapse?",
+            ],
+        6: [
+            "Monopoly - The classic property trading game.",
+            "Spyfall - Find out who the spy is!",
+            "Hidden Role Party - A game of deception and deduction.",
+            "Dixit - A game of imagination and storytelling.",
+            "Coup - Bluff your way to victory!",
+            "The Resistance - Can you find the traitors?",
+            ],
+        8: [
+            "Mafia - A game of deception and strategy.",
+            "Pictionary - A fun drawing and guessing game.",
+            "Charades - Act out words without speaking.",
+            "Team Trivia - Test your general knowledge in teams.",
+            "Telestrations - A hilarious drawing game.",
+            "Murder Mystery - Solve the crime as a team.",
+             ],
+    }
+    
+    # select a random game based on given number of players
+    return random.choice(games[num_players])
 
 
 def show_help():
@@ -223,7 +239,7 @@ def show_help():
         2. who_pays_the_bill(["Rin", "Elena", "Tony", "Corrine"]) - Randomly picks a person to pay the bill. 
         3. random_game_idea(4) - Suggests a random game for 4 players. 
         4. random_dare("medium") - Generates a random dare task. Choose from: "easy", "medium", or "hard".
-        5. random_truth_question("medium") - Generates a truth question. Choose from: "easy", "medium", or "hard".
+        5. random_truth("medium") - Generates a truth question. Choose from: "easy", "medium", or "hard".
         6. spin_the_bottle(["Rin", "Elena", "Tony", "Corrine"]) - Picks a random person for a challenge. 
         7. countdown_timer(30) - Starts a 30-second countdown. 
         """
