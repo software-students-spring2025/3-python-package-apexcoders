@@ -264,7 +264,7 @@ class Tests:
             result, str
         ), "The function should return a string when given a non-empty list"
 
-    def test_random_game_idea():
+    def test_random_game_idea(self):
         """Test if random_game_idea() returns valid game suggestions from the correct category and handles errors properly."""
 
         #Test valid cases (must return a value from the corresponding game list)
