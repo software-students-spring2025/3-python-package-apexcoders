@@ -111,11 +111,17 @@ class Tests:
         result = who_pays_the_bill(names)
         # The chosen name must be one from the list
         assert result in names, "The selected name should be one of the provided names."
-
+        
     def test_who_pays_the_bill_empty_list(self):
         result = who_pays_the_bill([])
         # When an empty list is provided, the function should return None
         assert result is None, "When the names list is empty, the function should return None."
+        
+    def test_who_pays_the_bill_return_type(self):
+        names = ["Alice", "Bob", "Charlie"]
+        result = who_pays_the_bill(names)
+        # Verify the return type is string when names are provided
+        assert isinstance(result, str), "The function should return a string when given a non-empty list"
 
     def test_random_game_idea_valid_players(self):
         players = 4
@@ -123,12 +129,23 @@ class Tests:
         # Check that the output string starts with the expected prefix
         expected_prefix = f"Game for {players} players:"
         assert result.startswith(expected_prefix), f"The output should start with '{expected_prefix}'"
-
+        
     def test_random_game_idea_invalid_players(self):
         # When there are less than two players, an error message should be returned.
         result = random_game_idea(players=1)
         assert "At least two players" in result, "For less than two players, the function should indicate that more players are needed."
-
+        
+    def test_random_game_idea_return_type(self):
+        players = 4
+        result = random_game_idea(players)
+        # Verify the return type is string
+        assert isinstance(result, str), "The function should return a string"
+        
+    def test_random_game_idea_different_player_counts(self):
+        # Test with different valid player counts
+        players = 6
+        result = random_game_idea(players)
+        assert f"Game for {players} players:" in result, "The function should work with 6 players"
 
 
     def test_show_help(self):
