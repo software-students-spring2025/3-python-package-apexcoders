@@ -264,39 +264,67 @@ class Tests:
             result, str
         ), "The function should return a string when given a non-empty list"
 
-    def test_random_game_idea_valid_players(self):
-        players = 4
-        result = random_game_idea(players)
-        # Check that the output string starts with the expected prefix
-        expected_prefix = f"Game for {players} players:"
-        assert result.startswith(
-            expected_prefix
-        ), f"The output should start with '{expected_prefix}'"
+    def test_random_game_idea():
+        """Test if random_game_idea() returns valid game suggestions from the correct category and handles errors properly."""
 
-    def test_random_game_idea_invalid_players(self):
-        # When there are less than two players, an error message should be returned.
-        result = random_game_idea(players=1)
-        assert (
-            "At least two players" in result
-        ), "For less than two players, the function should indicate that more players are needed."
+        #Test valid cases (must return a value from the corresponding game list)
+        games = {
+        1: [
+            "Solitaire - A classic card game for one player.",
+            "Sudoku - A logic puzzle to test your brain.",
+            "Crossword Puzzle - Improve vocabulary while having fun.",
+            "Tetris - A quick reflex block-stacking game.",
+            "Memory Game - Challenge yourself to remember card positions.",
+        ],
+        2: [
+            "Rock, Paper, Scissors - Best of 5 to determine the winner!",
+            "Tic-Tac-Toe - Play on paper or an app!",
+            "Chess - A deep strategic board game.",
+            "Checkers - A simple yet fun game of capturing pieces.",
+            "Table Tennis - If you have paddles and a ball, go for it!",
+            "Arm Wrestling - Test your strength!",
+        ],
+        3: [
+            "Three-way Rock, Paper, Scissors - Sudden death elimination!",
+            "Uno - A fun and fast-paced card game.",
+            "Truth or Dare - A classic game for laughs.",
+            "20 Questions - One person thinks of something, others guess.",
+            "Speed Typing Challenge - Who can type the fastest?",
+        ],
+        4: [
+            "Cards Against Humanity - Hilarious fill-in-the-blank card game.",
+            "Charades - Act out words without speaking.",
+            "Pictionary - Draw and guess the word.",
+            "Jenga - Test your steady hands!",
+            "Simon Says - A fun game to test listening skills.",
+        ],
+        5: [
+            "Mafia - A deception-based party game.",
+            "Never Have I Ever - Share fun or embarrassing facts.",
+            "Freeze Dance - Play music, and freeze when it stops!",
+            "Would You Rather? - Make tough choices with friends.",
+            "Musical Chairs - Remove a chair each round!",
+        ],
+        }
 
-    def test_random_game_idea_return_type(self):
-        players = 4
-        result = random_game_idea(players)
-        # Verify the return type is string
-        assert isinstance(result, str), "The function should return a string"
+        for num_players in games.keys():
+            result = random_game_idea(num_players)
+            assert isinstance(result, str), f"Expected a string for {num_players} players, but got {type(result)}."
+            assert result in games[num_players], f"Unexpected game suggestion '{result}' for {num_players} players."
 
-    def test_random_game_idea_different_player_counts(self):
-        # Test with different valid player counts
-        players = 6
-        result = random_game_idea(players)
-        assert f"Game for {players} players:" in result, "The function should work with 6 players"
-    
-    def test_random_game_idea_invalid_input_type(self):
-        # Test with a string instead of an integer
-        result = random_game_idea("4")
-        assert "Error" in result or isinstance(result, str), "Function should handle non-integer input appropriately"
+        #Test invalid cases (should return error messages)
+        invalid_inputs = [0, 6, -1, "two", None]
+        expected_errors = [
+            "Error: The number of players must be between 1 and 5.",
+            "Error: The number of players must be between 1 and 5.",
+            "Error: The number of players must be between 1 and 5.",
+            "Error: The number of players must be between 1 and 5. Only numbers are allowed.",
+            "Error: The number of players must be between 1 and 5. Only numbers are allowed.",
+        ]
 
+        for test_input, expected_error in zip(invalid_inputs, expected_errors):
+            result = random_game_idea(test_input)
+            assert result == expected_error, f"Expected '{expected_error}' for input {test_input}, but got '{result}'."
 
 
     def test_show_help(self):
