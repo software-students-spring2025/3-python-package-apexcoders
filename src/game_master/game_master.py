@@ -79,53 +79,48 @@ def random_multiple_people_punishment(num, name_list):
 
     return f"{', '.join(selected_people)} must {punishment}"
 
-
-def random_game_idea(num_players):
-    # Validation
-    if not isinstance(num_players, int):
-        return "Error: The number of players involved in the game must be 2,4,6 or 8. Only numbers are allowed."
-    if num_players <= 0:
-        return "Error: The number of players involved in the game must be 2,4,6 or 8. Negative number are not allowed."
-    if num_players not in {2, 4, 6, 8}:
-        return "Error: The number of players involved in the game must be 2,4,6 or 8."
-
-    # Function: Returns a game idea based on the number of players.
-    games = {
-        2: [
-            "Chess - A strategic board game.",
-            "Checkers - A classic game of capturing pieces.",
-            "Card Duel - Try out a fast-paced card game.",
-            "Tic-Tac-Toe - Simple but intense!",
-            "Jenga - Test your steady hands.",
-            "Rock, Paper, Scissors - Best of 5 wins!",
+def random_truth(level_difficulty):
+    if not isinstance(level_difficulty, str):
+        return "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+    if level_difficulty not in {"easy","medium","hard"}:
+        return "Error: The level of difficulty entered must be easy, medium or hard"
+    
+    # Truth prompts based on difficulty level
+    truths = {
+        "easy": [
+            "What is your favorite food?",
+            "Do you have a secret talent?",
+            "What is the last movie you watched?",
+            "Have you ever sung in the shower?",
+            "Who is your celebrity crush?",
+            "What is your favorite holiday destination?",
+            "Have you ever had a funny dream? Describe it!",
+            "What is your guilty pleasure?"
         ],
-        4: [
-            "Werewolf - A social deduction game.",
-            "UNO - A fun and chaotic card game.",
-            "Codenames - Work in teams to find secret words.",
-            "Exploding Kittens - A hilarious card game.",
-            "Pictionary - Draw and guess words.",
-            "Jenga - Can you survive the tower collapse?",
+        "medium": [
+            "What is one thing you regret doing?",
+            "Have you ever lied to get out of trouble?",
+            "What is the most embarrassing thing that has happened to you?",
+            "What is your worst habit?",
+            "What is the biggest secret you have kept from your parents?",
+            "If you had to change one thing about yourself, what would it be?",
+            "What is the weirdest thing you've ever eaten?",
+            "Have you ever had a crush on a teacher?"
         ],
-        6: [
-            "Monopoly - The classic property trading game.",
-            "Spyfall - Find out who the spy is!",
-            "Hidden Role Party - A game of deception and deduction.",
-            "Dixit - A game of imagination and storytelling.",
-            "Coup - Bluff your way to victory!",
-            "The Resistance - Can you find the traitors?",
-        ],
-        8: [
-            "Mafia - A game of deception and strategy.",
-            "Pictionary - A fun drawing and guessing game.",
-            "Charades - Act out words without speaking.",
-            "Team Trivia - Test your general knowledge in teams.",
-            "Telestrations - A hilarious drawing game.",
-            "Murder Mystery - Solve the crime as a team.",
+        "hard": [
+            "What is the biggest lie you have ever told?",
+            "Have you ever cheated on a test or in a game?",
+            "What is the most illegal thing you have ever done?",
+            "What is something you've never told anyone?",
+            "Have you ever betrayed a friend's trust? What happened?",
+            "What is the biggest mistake you have made in a relationship?",
+            "What is the one thing you would never admit to your parents?",
+            "Have you ever spread a rumor about someone?"
         ],
     }
-    # select a random game based on given number of players
-    return random.choice(games[num_players])
+
+    # Select a random truth question based on the difficulty level
+    return random.choice(truths[level_difficulty])
 
 
 def random_dare(difficulty):
