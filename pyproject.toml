@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "game_master"
-description = "An assisting tool for helping people to party games."
+description = "An entertaining Python package that helps make party games more fun by providing random game ideas, challenges, and tools for game masters and party hosts."
 version = "0.1.1"
 authors = [
     { name="Tony Zhao", email="sz3822@nyu.edu" },
     { name="Rin Qi", email="yq2290@nyu.edu" },
-    { name="Corrine Huang", email="ch3807@nyu.edu" },
+    { name="Chuqiao Huang", email="ch3807@nyu.edu" },
     { name="Huixin Li", email = "hl4909@nyu.edu" }
 ]
 license = { file = "LICENSE" }

@@ -67,11 +67,11 @@ def random_multiple_people_punishment(num, name_list):
         return f"Error: Cannot punish {num} people when only {len(stripped_names)} names are available."
 
     punishments = [
-        "Drink a shot!",
-        "Do 10 jumping jacks!",
-        "Sing a song!",
-        "Wear socks on your hands for the next round!",
-        "Speak in an accent for 5 minutes!",
+        "drink a shot!",
+        "do 10 jumping jacks!",
+        "sing a song!",
+        "wear socks on your hands for the next round!",
+        "speak in an accent for 5 minutes!",
     ]
 
     selected_people = random.sample(stripped_names, num)
@@ -80,14 +80,58 @@ def random_multiple_people_punishment(num, name_list):
     return f"{', '.join(selected_people)} must {punishment}"
 
 
+def random_truth(level_difficulty):
+    if not isinstance(level_difficulty, str):
+        return "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
+    if level_difficulty not in {"easy","medium","hard"}:
+        return "Error: The level of difficulty entered must be easy, medium or hard"
+    
+    # Truth prompts based on difficulty level
+    truths = {
+        "easy": [
+            "What is your favorite food?",
+            "Do you have a secret talent?",
+            "What is the last movie you watched?",
+            "Have you ever sung in the shower?",
+            "Who is your celebrity crush?",
+            "What is your favorite holiday destination?",
+            "Have you ever had a funny dream? Describe it!",
+            "What is your guilty pleasure?"
+        ],
+        "medium": [
+            "What is one thing you regret doing?",
+            "Have you ever lied to get out of trouble?",
+            "What is the most embarrassing thing that has happened to you?",
+            "What is your worst habit?",
+            "What is the biggest secret you have kept from your parents?",
+            "If you had to change one thing about yourself, what would it be?",
+            "What is the weirdest thing you've ever eaten?",
+            "Have you ever had a crush on a teacher?"
+        ],
+        "hard": [
+            "What is the biggest lie you have ever told?",
+            "Have you ever cheated on a test or in a game?",
+            "What is the most illegal thing you have ever done?",
+            "What is something you've never told anyone?",
+            "Have you ever betrayed a friend's trust? What happened?",
+            "What is the biggest mistake you have made in a relationship?",
+            "What is the one thing you would never admit to your parents?",
+            "Have you ever spread a rumor about someone?"
+        ],
+    }
+
+    # Select a random truth question based on the difficulty level
+    return random.choice(truths[level_difficulty])
+
+
 def random_dare(difficulty):
     # Validation
     if not isinstance(difficulty, str):
         return "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
-    if difficulty not in {"easy","medium","hard"}:
+    if difficulty not in {"easy", "medium", "hard"}:
         return "Error: The level of difficulty entered must be easy, medium or hard"
-    
-    #function: returns a random dare task based on the level of diffivulty
+
+    # function: returns a random dare task based on the level of diffivulty
     dares = {
         "easy": [
             "Do 10 jumping jacks.",
@@ -97,7 +141,7 @@ def random_dare(difficulty):
             "Hold a silly face for 1 minute.",
             "Talk in a funny accent for 2 minutes.",
             "Act like a monkey for the next 3 turns.",
-            "Tell a joke and make everyone laugh."
+            "Tell a joke and make everyone laugh.",
         ],
         "medium": [
             "Meow like a cat for 30 seconds.",
@@ -107,7 +151,7 @@ def random_dare(difficulty):
             "Walk like a duck for the next 3 minutes.",
             "Let another player post something on your social media.",
             "Do a freestyle rap about the group for 30 seconds.",
-            "Mimic a celebrity and let others guess who you are."
+            "Mimic a celebrity and let others guess who you are.",
         ],
         "hard": [
             "Drink a mixed drink created by other players.",
@@ -117,7 +161,7 @@ def random_dare(difficulty):
             "Wear socks on your hands for the rest of the game.",
             "Do 20 push-ups or take a shot.",
             "Reveal the last text message you sent.",
-            "Call a random contact and confess your love to them."
+            "Call a random contact and confess your love to them.",
         ],
     }
     return random.choice(dares.get(difficulty))
@@ -138,6 +182,7 @@ def who_pays_the_bill(names_list):
     # Simulate a roulette selection by randomly choosing a name
     return random.choice(names_list)
 
+
 def random_game_idea(players=4):
     """
     Generate a random game idea based on the number of players.
@@ -154,7 +199,7 @@ def random_game_idea(players=4):
         
     if players < 2:
         return "At least two players are required to play."
-    
+
     # Define a list of game ideas suitable for a drinking game theme
     game_ideas = [
         "Truth or Dare",
@@ -164,12 +209,11 @@ def random_game_idea(players=4):
         "Kings",
         "Flip Cup",
         "Drinking Roulette",
-        "Card Game Challenge"
+        "Card Game Challenge",
     ]
-    
+
     idea = random.choice(game_ideas)
     return f"Game for {players} players: {idea}"
-
 
 
 def show_help():
