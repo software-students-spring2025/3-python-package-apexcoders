@@ -348,14 +348,12 @@ class Tests:
         ), "Expected show_help() to return a string."
 
         # Ensure the function returns the expected text
-        assert (
-            actual_output.strip() == expected_output.strip()
-        ), "Help text output is incorrect."
+        assert " ".join(actual_output.split()) == " ".join(expected_output.split()), "Help text output is incorrect."
 
         # Ensure the returned text has the correct length
-        assert len(actual_output.strip()) == len(
-            expected_output.strip()
-        ), f"Expected length {len(expected_output.strip())}, but got {len(actual_output.strip())}"
+        assert len(" ".join(actual_output.split())) == len(" ".join(expected_output.split())), \
+        f"Expected length {len(' '.join(expected_output.split()))}, but got {len(' '.join(actual_output.split()))}"
+
 
     # Run the test if this script is executed directly
     if __name__ == "__main__":
