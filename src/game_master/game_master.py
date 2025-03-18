@@ -184,48 +184,59 @@ def who_pays_the_bill(names_list):
 
 
 def random_game_idea(num_players):
+    """
+    Generate a random game idea based on the number of players (1 to 5 players supported).
+
+    Args:
+        num_players (int): The number of players.
+
+    Returns:
+        str: A recommended game idea for the specified number of players.
+    """
     # Validation
     if not isinstance(num_players, int):
-        return "Error: The number of players involved in the game must be 2,4,6 or 8. Only numbers are allowed."
-    if num_players <= 0:
-        return "Error: The number of players involved in the game must be 2,4,6 or 8. Negative number are not allowed."
-    if num_players not in {2, 4, 6, 8}:
-        return "Error: The number of players involved in the game must be 2,4,6 or 8."
+        return "Error: The number of players must be between 1 and 5. Only numbers are allowed."
+    if num_players <= 0 or num_players > 5:
+        return "Error: The number of players must be between 1 and 5."
 
-    # Function: Returns a game idea based on the number of players.
+    # Practical, easy-to-play games
     games = {
+        1: [
+            "Solitaire - A classic card game for one player.",
+            "Sudoku - A logic puzzle to test your brain.",
+            "Crossword Puzzle - Improve vocabulary while having fun.",
+            "Tetris - A quick reflex block-stacking game.",
+            "Memory Game - Challenge yourself to remember card positions.",
+        ],
         2: [
-            "Chess - A strategic board game.",
-            "Checkers - A classic game of capturing pieces.",
-            "Card Duel - Try out a fast-paced card game.",
-            "Tic-Tac-Toe - Simple but intense!",
-            "Jenga - Test your steady hands.",
-            "Rock, Paper, Scissors - Best of 5 wins!",
+            "Rock, Paper, Scissors - Best of 5 to determine the winner!",
+            "Tic-Tac-Toe - Play on paper or an app!",
+            "Chess - A deep strategic board game.",
+            "Checkers - A simple yet fun game of capturing pieces.",
+            "Table Tennis - If you have paddles and a ball, go for it!",
+            "Arm Wrestling - Test your strength!",
+        ],
+        3: [
+            "Three-way Rock, Paper, Scissors - Sudden death elimination!",
+            "Uno - A fun and fast-paced card game.",
+            "Truth or Dare - A classic game for laughs.",
+            "20 Questions - One person thinks of something, others guess.",
+            "Speed Typing Challenge - Who can type the fastest?",
         ],
         4: [
-            "Werewolf - A social deduction game.",
-            "UNO - A fun and chaotic card game.",
-            "Codenames - Work in teams to find secret words.",
-            "Exploding Kittens - A hilarious card game.",
-            "Pictionary - Draw and guess words.",
-            "Jenga - Can you survive the tower collapse?",
-            ],
-        6: [
-            "Monopoly - The classic property trading game.",
-            "Spyfall - Find out who the spy is!",
-            "Hidden Role Party - A game of deception and deduction.",
-            "Dixit - A game of imagination and storytelling.",
-            "Coup - Bluff your way to victory!",
-            "The Resistance - Can you find the traitors?",
-            ],
-        8: [
-            "Mafia - A game of deception and strategy.",
-            "Pictionary - A fun drawing and guessing game.",
+            "Cards Against Humanity - Hilarious fill-in-the-blank card game.",
             "Charades - Act out words without speaking.",
-            "Team Trivia - Test your general knowledge in teams.",
-            "Telestrations - A hilarious drawing game.",
-            "Murder Mystery - Solve the crime as a team.",
-             ],
+            "Pictionary - Draw and guess the word.",
+            "Jenga - Test your steady hands!",
+            "Simon Says - A fun game to test listening skills.",
+        ],
+        5: [
+            "Mafia - A deception-based party game.",
+            "Never Have I Ever - Share fun or embarrassing facts.",
+            "Freeze Dance - Play music, and freeze when it stops!",
+            "Would You Rather? - Make tough choices with friends.",
+            "Musical Chairs - Remove a chair each round!",
+        ],
     }
     
     # select a random game based on given number of players
@@ -244,3 +255,5 @@ def show_help():
         7. countdown_timer(30) - Starts a 30-second countdown. 
         """
     return help_text.strip()
+
+

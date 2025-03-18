@@ -20,57 +20,58 @@ def main():
     Commandline interface for gameMaster package
     """
     parser = argparse.ArgumentParser(
-        description="GameMaster - A Fun Party Game Generator! 🎲\n"
-        "Use the following commands to play different party games."
+        description="GameMaster - A Fun Party Game Generator!\n"
+        "Use the following commands to play different party games.\n\n\n",
+        formatter_class=argparse.RawTextHelpFormatter   # Ensures newlines are respected
     )
 
     parser.add_argument(
         "--bottle",
         nargs="+",
         help="Spin the bottle with a list of names.\n"
-        "Example: python -m game_master --bottle Alice Bob Charlie",
+        "Example: python -m game_master --bottle Alice Bob Charlie\n\n",
     )
 
     parser.add_argument(
         "--countdown",
         type=int,
         help="Countdown timer in seconds.\n"
-        "Example: python -m game_master --countdown 10",
+        "Example: python -m game_master --countdown 10\n\n",
     )
 
     parser.add_argument(
         "--punish",
         nargs="+",
         help="Punish a random number of players from a list.\n"
-        "Example: python -m game_master --punish 2 Alice Bob Charlie",
+        "Example: python -m game_master --punish 2 Alice Bob Charlie\n\n",
     )
 
     parser.add_argument(
         "--game",
         type=int,
-        help="Suggest a random game for 2, 4, 6, or 8 players.\n"
-        "Example: python -m game_master --game 4",
+        help="Suggest a random game for 1 to 5 players.\n"
+        "Example: python -m game_master --game 4\n\n",
     )
 
     parser.add_argument(
         "--dare",
         type=str,
         help="Generate a random dare based on difficulty level (easy, medium, hard).\n"
-        "Example: python -m game_master --dare hard",
+        "Example: python -m game_master --dare hard\n\n",
     )
 
     parser.add_argument(
         "--truth",
         type=str,
         help="Generate a random truth based on difficulty level (easy, medium, hard).\n"
-        "Example: python -m game_master --truth hard",
+        "Example: python -m game_master --truth hard\n\n",
     )
 
     parser.add_argument(
         "--pay",
         type=str,
         help="Choose from the provided list of names to pay the bill.\n"
-        "Example: python -m game_master --pay Alice, Bob, Peter, Charlie",
+        "Example: python -m game_master --pay Alice, Bob, Peter, Charlie\n\n",
     )
 
     args = parser.parse_args()
