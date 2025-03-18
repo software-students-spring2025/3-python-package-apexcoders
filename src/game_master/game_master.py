@@ -79,6 +79,7 @@ def random_multiple_people_punishment(num, name_list):
 
     return f"{', '.join(selected_people)} must {punishment}"
 
+
 def random_truth(level_difficulty):
     if not isinstance(level_difficulty, str):
         return "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
@@ -192,6 +193,10 @@ def random_game_idea(players=4):
     Returns:
         str: A recommended game idea for the specified number of players.
     """
+    # Add type checking for players parameter
+    if not isinstance(players, int):
+        return "Error: The number of players must be an integer."
+        
     if players < 2:
         return "At least two players are required to play."
 

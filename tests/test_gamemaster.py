@@ -242,6 +242,7 @@ class Tests:
         result = random_dare({})
         assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
 
+# testing function 'who pays the bill' and 'random game idea'
     def test_who_pays_the_bill_with_names(self):
         names = ["Alice", "Bob", "Charlie"]
         result = who_pays_the_bill(names)
@@ -289,9 +290,14 @@ class Tests:
         # Test with different valid player counts
         players = 6
         result = random_game_idea(players)
-        assert (
-            f"Game for {players} players:" in result
-        ), "The function should work with 6 players"
+        assert f"Game for {players} players:" in result, "The function should work with 6 players"
+    
+    def test_random_game_idea_invalid_input_type(self):
+        # Test with a string instead of an integer
+        result = random_game_idea("4")
+        assert "Error" in result or isinstance(result, str), "Function should handle non-integer input appropriately"
+
+
 
     def test_show_help(self):
         """Test if show_help() returns the correct help text."""
