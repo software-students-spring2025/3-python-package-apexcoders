@@ -243,27 +243,36 @@ class Tests:
         assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
 
 # testing function 'who pays the bill' and 'random game idea'
-    def test_who_pays_the_bill_with_names(self):
+    def test_who_pays_the_bill(self):
+        # Test with valid input - names list
         names = ["Alice", "Bob", "Charlie"]
         result = who_pays_the_bill(names)
         # The chosen name must be one from the list
         assert result in names, "The selected name should be one of the provided names."
-
-    def test_who_pays_the_bill_empty_list(self):
-        result = who_pays_the_bill([])
-        # When an empty list is provided, the function should return None
-        assert (
-            result is None
-        ), "When the names list is empty, the function should return None."
-
-    def test_who_pays_the_bill_return_type(self):
-        names = ["Alice", "Bob", "Charlie"]
-        result = who_pays_the_bill(names)
         # Verify the return type is string when names are provided
-        assert isinstance(
-            result, str
-        ), "The function should return a string when given a non-empty list"
+        assert isinstance(result, str), "The function should return a string when given a non-empty list"
+        
+        # Test with empty list
+        with pytest.raises(ValueError) as e:
+            who_pays_the_bill([])
+        assert "cannot be empty" in str(e.value), "Should raise ValueError for empty list"
+        
+        # Test with non-list input
+        with pytest.raises(ValueError) as e:
+            who_pays_the_bill("Not a list")
+        assert "must be a list" in str(e.value), "Should raise ValueError for non-list input"
+        
+        # Test with list containing invalid entries
+        with pytest.raises(ValueError) as e:
+            who_pays_the_bill(["Alice", "", "Charlie"])
+        assert "cannot contain empty" in str(e.value), "Should raise ValueError for list with empty strings"
+        
+        # Test with duplicate names
+        with pytest.raises(ValueError) as e:
+            who_pays_the_bill(["Alice", "Bob", "Alice"])
+        assert "cannot contain duplicates" in str(e.value), "Should raise ValueError for duplicate names"
 
+        
     def test_random_game_idea(self):
         """Test if random_game_idea() returns valid game suggestions from the correct category and handles errors properly."""
 
