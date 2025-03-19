@@ -1,6 +1,7 @@
 ![CI/CD Build & Test](https://github.com/software-students-spring2025/3-python-package-apexcoders/actions/workflows/ci.yml/badge.svg)
 
 # Game Master
+
 An entertaining Python package that helps make party games more fun by providing random game ideas, challenges, and tools for game masters and party hosts.
 
 ## Description
@@ -12,16 +13,19 @@ Game Master is a fun and lighthearted Python package designed to bring joy to yo
 ## How to install and use this package
 
 1. Install the package:
+
 ```bash
 pip install game_master
 ```
 
 2. Use directly from command line:
+
 ```bash
 python -m game_master --help
 ```
 
 3. Or import in your Python code:
+
 ```python
 from game_master import spin_the_bottle, random_game_idea
 
@@ -59,16 +63,7 @@ pip install game_master
 ### Importing in Python Code
 
 ```python
-from game_master import (
-    spin_the_bottle,
-    countdown,
-    random_multiple_people_punishment,
-    random_game_idea,
-    random_dare,
-    random_truth,
-    who_pays_the_bill,
-    show_help
-)
+from game_master import *
 ```
 
 ### Function Examples
@@ -201,10 +196,10 @@ Here's a complete example that uses all the functions:
 
 ```python
 from game_master import (
-    spin_the_bottle, 
-    countdown, 
-    random_multiple_people_punishment, 
-    random_game_idea, 
+    spin_the_bottle,
+    countdown,
+    random_multiple_people_punishment,
+    random_game_idea,
     random_truth,
     random_dare,
     who_pays_the_bill,
@@ -213,40 +208,40 @@ from game_master import (
 
 def run_party_night():
     print("Welcome to Party Night!")
-    
+
     # Set up player names
     players = ["Rin", "Elena", "Tony", "Corrine"]
     print(f"Players tonight: {', '.join(players)}")
-    
+
     # Start with a game idea
     print("\nLet's start with a game:")
     game = random_game_idea(4)
     print(game)
-    
+
     # Spin the bottle to pick a player
     print("\nLet's see who goes first...")
     chosen = spin_the_bottle(players)
     print(chosen)
-    
+
     # Give a dare
     print("\nTime for a dare!")
     dare = random_dare("medium")
     print(f"Your dare is: {dare}")
-    
+
     # Now ask a truth question
     print("\nTime for some truth!")
     truth = random_truth("medium")
     print(f"Answer honestly: {truth}")
-    
+
     # Countdown for the dare
     print("\nYou have 10 seconds to decide whether to do the dare or answer the truth!")
     countdown(10)
-    
+
     # Random punishment for multiple people
     print("\nTime for punishment!")
     punishment = random_multiple_people_punishment(2, players)
     print(punishment)
-    
+
     # Decide who pays for pizza
     print("\nWho's paying for pizza tonight?")
     payer = who_pays_the_bill(players)
@@ -254,7 +249,7 @@ def run_party_night():
         print(payer)
     else:
         print(f"{payer} will pay for pizza!")
-        
+
     # Show help at the end
     print("\nNeed more ideas? Here's all you can do:")
     print(show_help())
@@ -281,17 +276,20 @@ python party_night.py
 ### Setup Steps
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/software-students-spring2025/3-python-package-apexcoders.git
 cd 3-python-package-apexcoders
 ```
 
 2. Set up the virtual environment and install dependencies:
+
 ```bash
 pipenv install --dev
 ```
 
 3. Activate the virtual environment:
+
 ```bash
 pipenv shell
 ```
@@ -326,12 +324,14 @@ pip install -e .
 
 1. Fork the repository
 2. Create a new feature branch:
+
 ```bash
 git checkout -b feature/your-feature-name
 ```
 
 3. Make your changes and write tests
 4. Run tests to ensure they pass:
+
 ```bash
 pytest
 ```

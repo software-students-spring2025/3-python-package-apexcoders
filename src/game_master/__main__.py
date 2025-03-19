@@ -22,7 +22,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="GameMaster - A Fun Party Game Generator!\n"
         "Use the following commands to play different party games.\n\n\n",
-        formatter_class=argparse.RawTextHelpFormatter   # Ensures newlines are respected
+        formatter_class=argparse.RawTextHelpFormatter,  # Ensures newlines are respected
     )
 
     parser.add_argument(
@@ -69,7 +69,7 @@ def main():
 
     parser.add_argument(
         "--pay",
-        nargs='+',
+        nargs="+",
         help="Choose from the provided list of names to pay the bill.\n"
         "Example: python -m game_master --pay Alice, Bob, Peter, Charlie\n\n",
     )
