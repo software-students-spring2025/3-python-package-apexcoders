@@ -257,10 +257,20 @@ class Tests:
             who_pays_the_bill([])
         assert "cannot be empty" in str(e.value), "Should raise ValueError for empty list"
         
-        # Test with non-list input
+        # Test with non-list input (string)
         with pytest.raises(ValueError) as e:
             who_pays_the_bill("Not a list")
-        assert "must be a list" in str(e.value), "Should raise ValueError for non-list input"
+        assert "must be a list" in str(e.value), "Should raise ValueError for string input"
+        
+        # Test with non-list input (integer)
+        with pytest.raises(ValueError) as e:
+            who_pays_the_bill(1)
+        assert "must be a list" in str(e.value), "Should raise ValueError for integer input"
+        
+        # Test with non-list input (None)
+        with pytest.raises(ValueError) as e:
+            who_pays_the_bill(None)
+        assert "must be a list" in str(e.value), "Should raise ValueError for None input"
         
         # Test with list containing invalid entries
         with pytest.raises(ValueError) as e:
@@ -272,7 +282,6 @@ class Tests:
             who_pays_the_bill(["Alice", "Bob", "Alice"])
         assert "cannot contain duplicates" in str(e.value), "Should raise ValueError for duplicate names"
 
-        
     def test_random_game_idea(self):
         """Test if random_game_idea() returns valid game suggestions from the correct category and handles errors properly."""
 
@@ -320,6 +329,7 @@ class Tests:
             result = random_game_idea(num_players)
             assert isinstance(result, str), f"Expected a string for {num_players} players, but got {type(result)}."
             assert result in games[num_players], f"Unexpected game suggestion '{result}' for {num_players} players."
+
 
         #Test invalid cases (should return error messages)
         invalid_inputs = [0, 6, -1, "two", None]
