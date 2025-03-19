@@ -69,7 +69,8 @@ def main():
 
     parser.add_argument(
         "--pay",
-        type=str,
+        nargs='+',
+        #type=str,
         help="Choose from the provided list of names to pay the bill.\n"
         "Example: python -m game_master --pay Alice, Bob, Peter, Charlie\n\n",
     )
