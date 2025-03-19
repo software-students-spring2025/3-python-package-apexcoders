@@ -63,7 +63,16 @@ pip install game_master
 ### Importing in Python Code
 
 ```python
-from game_master import *
+from game_master import (
+    spin_the_bottle,
+    countdown,
+    random_multiple_people_punishment,
+    random_game_idea,
+    random_dare,
+    random_truth,
+    who_pays_the_bill,
+    show_help
+)
 ```
 
 ### Function Examples
