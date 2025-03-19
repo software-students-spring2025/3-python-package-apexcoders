@@ -1,5 +1,3 @@
-![CI/CD Build & Test](https://github.com/software-students-spring2025/3-python-package-apexcoders/actions/workflows/ci.yml/badge.svg)
-
 # Game Master
 
 
@@ -8,7 +6,7 @@ An entertaining Python package that helps make party games more fun by providing
 
 ## Description
 
-Game Master is a fun and lighthearted Python package designed to bring joy to your gatherings. It provides a variety of functions to help you run party games, including selecting random participants, generating game ideas, creating dares, managing countdowns, and more.
+Game Master is a fun and lighthearted Python package designed to bring joy to your gatherings. It provides a variety of functions to help you run party games, including selecting random participants, generating game ideas, creating dares and truth questions, managing countdowns, and more.
 
 [View Game Master on PyPI](https://pypi.org/project/game-master/)
 
@@ -19,6 +17,7 @@ Game Master is a fun and lighthearted Python package designed to bring joy to yo
 - Generate random punishments for multiple players
 - Suggest game ideas based on player count
 - Create random dares with varying difficulty levels
+- Generate truth questions with varying difficulty levels
 - Randomly select who pays the bill
 - Show help text with function descriptions
 
@@ -35,7 +34,16 @@ pip install game_master
 ### Importing in Python Code
 
 ```python
-from game_master import spin_the_bottle, countdown, random_multiple_people_punishment, random_game_idea, random_dare, who_pays_the_bill, show_help
+from game_master import (
+    spin_the_bottle,
+    countdown,
+    random_multiple_people_punishment,
+    random_game_idea,
+    random_dare,
+    random_truth,
+    who_pays_the_bill,
+    show_help
+)
 ```
 
 ### Function Examples
@@ -78,8 +86,8 @@ print(result)  # Output: "[Name1], [Name2] must [punishment]!"
 from game_master import random_game_idea
 
 # Get a random game idea for 4 players
-game = random_game_idea(4)  # Accepts 2, 4, 6, or 8 players
-print(game)  # Output: "Game for 4 players: [Game Idea]"
+game = random_game_idea(4)  # Accepts 1-5 players
+print(game)  # Output: A game suggestion for 4 players
 ```
 
 #### Random Dare
@@ -92,6 +100,16 @@ dare = random_dare("medium")  # Accepts "easy", "medium", or "hard"
 print(dare)  # Output: "[Random dare text]"
 ```
 
+#### Random Truth Question
+
+```python
+from game_master import random_truth
+
+# Generate a random truth question with easy difficulty
+truth = random_truth("easy")  # Accepts "easy", "medium", or "hard"
+print(truth)  # Output: "[Random truth question]"
+```
+
 #### Who Pays the Bill
 
 ```python
@@ -99,8 +117,11 @@ from game_master import who_pays_the_bill
 
 # Randomly select someone to pay the bill
 names = ["Rin", "Elena", "Tony", "Corrine"]
-payer = who_pays_the_bill(names)
-print(f"{payer} will pay the bill!")
+try:
+    payer = who_pays_the_bill(names)
+    print(f"{payer} will pay the bill!")
+except ValueError as e:
+    print(f"Error: {e}")
 ```
 
 #### Show Help
@@ -130,9 +151,20 @@ python -m game_master --game 4
 # Random dare
 python -m game_master --dare medium
 
+# Random truth question
+python -m game_master --truth easy
+
+# Select who pays the bill
+python -m game_master --pay Alice Bob Charlie David
+
+# Random punishment
+python -m game_master --punish 2 Rin Elena Tony Corrine
+
 # Show help
 python -m game_master --help
 ```
+
+All commands include error handling and validation to ensure a smooth experience even with incorrect inputs.
 
 ## Example Program
 
@@ -144,6 +176,7 @@ from game_master import (
     countdown, 
     random_multiple_people_punishment, 
     random_game_idea, 
+    random_truth,
     random_dare,
     who_pays_the_bill,
     show_help
@@ -171,8 +204,13 @@ def run_party_night():
     dare = random_dare("medium")
     print(f"Your dare is: {dare}")
     
+    # Now ask a truth question
+    print("\nTime for some truth!")
+    truth = random_truth("medium")
+    print(f"Answer honestly: {truth}")
+    
     # Countdown for the dare
-    print("\nYou have 10 seconds to complete the dare!")
+    print("\nYou have 10 seconds to decide whether to do the dare or answer the truth!")
     countdown(10)
     
     # Random punishment for multiple people
@@ -182,8 +220,11 @@ def run_party_night():
     
     # Decide who pays for pizza
     print("\nWho's paying for pizza tonight?")
-    payer = who_pays_the_bill(players)
-    print(f"{payer} will pay for pizza!")
+    try:
+        payer = who_pays_the_bill(players)
+        print(f"{payer} will pay for pizza!")
+    except ValueError as e:
+        print(f"Error: {e}")
     
     # Show help at the end
     print("\nNeed more ideas? Here's all you can do:")
@@ -191,6 +232,14 @@ def run_party_night():
 
 if __name__ == "__main__":
     run_party_night()
+```
+
+This example demonstrates how to use each function in the Game Master package to create a complete party game experience. It includes player selection, game ideas, dares, truth questions, countdowns, punishments, and bill payment selection.
+
+You can run this example by saving it as `party_night.py` and executing:
+
+```bash
+python party_night.py
 ```
 
 ## Development Setup
@@ -265,8 +314,8 @@ pytest
 ## Team
 
 - [Tony Zhao](https://github.com/Tonyzsp)
-- [Rin Qi](https://github.com/RinQi)
-- [Corrine Huang](https://github.com/CorrineHuang)
+- [Rin Qi](https://github.com/Rin-Qi)
+- [Corrine Huang](https://github.com/ChuqiaoHuang)
 - [Huixin Li](https://github.com/HuixinLi-Elena)
 
 ## License
