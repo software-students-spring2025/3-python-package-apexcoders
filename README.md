@@ -1,7 +1,6 @@
+![CI/CD Build & Test](https://github.com/software-students-spring2025/3-python-package-apexcoders/actions/workflows/ci.yml/badge.svg)
+
 # Game Master
-
-
-
 An entertaining Python package that helps make party games more fun by providing random game ideas, challenges, and tools for game masters and party hosts.
 
 ## Description
@@ -9,6 +8,32 @@ An entertaining Python package that helps make party games more fun by providing
 Game Master is a fun and lighthearted Python package designed to bring joy to your gatherings. It provides a variety of functions to help you run party games, including selecting random participants, generating game ideas, creating dares and truth questions, managing countdowns, and more.
 
 [View Game Master on PyPI](https://pypi.org/project/game-master/)
+
+## How to install and use this package
+
+1. Install the package:
+```bash
+pip install game_master
+```
+
+2. Use directly from command line:
+```bash
+python -m game_master --help
+```
+
+3. Or import in your Python code:
+```python
+from game_master import spin_the_bottle, random_game_idea
+
+# Generate a random game idea for 4 players
+game = random_game_idea(4)
+print(game)
+
+# Spin the bottle with a list of names
+names = ["Alice", "Bob", "Charlie", "David"]
+result = spin_the_bottle(names)
+print(result)
+```
 
 ## Features
 
@@ -117,11 +142,15 @@ from game_master import who_pays_the_bill
 
 # Randomly select someone to pay the bill
 names = ["Rin", "Elena", "Tony", "Corrine"]
-try:
-    payer = who_pays_the_bill(names)
-    print(f"{payer} will pay the bill!")
-except ValueError as e:
-    print(f"Error: {e}")
+result = who_pays_the_bill(names)
+if result.startswith("Error:"):
+    print(result)
+else:
+    print(f"{result} will pay the bill!")
+
+# Example with invalid input
+invalid_result = who_pays_the_bill([])
+print(invalid_result)  # Output: "Error: names_list cannot be empty."
 ```
 
 #### Show Help
@@ -220,12 +249,12 @@ def run_party_night():
     
     # Decide who pays for pizza
     print("\nWho's paying for pizza tonight?")
-    try:
-        payer = who_pays_the_bill(players)
+    payer = who_pays_the_bill(players)
+    if payer.startswith("Error:"):
+        print(payer)
+    else:
         print(f"{payer} will pay for pizza!")
-    except ValueError as e:
-        print(f"Error: {e}")
-    
+        
     # Show help at the end
     print("\nNeed more ideas? Here's all you can do:")
     print(show_help())

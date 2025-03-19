@@ -242,7 +242,7 @@ class Tests:
         result = random_dare({})
         assert result == "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
 
-# testing function 'who pays the bill' and 'random game idea'
+
     def test_who_pays_the_bill(self):
         # Test with valid input - names list
         names = ["Alice", "Bob", "Charlie"]
@@ -253,34 +253,29 @@ class Tests:
         assert isinstance(result, str), "The function should return a string when given a non-empty list"
         
         # Test with empty list
-        with pytest.raises(ValueError) as e:
-            who_pays_the_bill([])
-        assert "cannot be empty" in str(e.value), "Should raise ValueError for empty list"
+        result = who_pays_the_bill([])
+        assert result == "Error: names_list cannot be empty.", "Should return error message for empty list"
         
         # Test with non-list input (string)
-        with pytest.raises(ValueError) as e:
-            who_pays_the_bill("Not a list")
-        assert "must be a list" in str(e.value), "Should raise ValueError for string input"
+        result = who_pays_the_bill("Not a list")
+        assert result == "Error: names_list must be a list of names.", "Should return error message for string input"
         
         # Test with non-list input (integer)
-        with pytest.raises(ValueError) as e:
-            who_pays_the_bill(1)
-        assert "must be a list" in str(e.value), "Should raise ValueError for integer input"
+        result = who_pays_the_bill(1)
+        assert result == "Error: names_list must be a list of names.", "Should return error message for integer input"
         
         # Test with non-list input (None)
-        with pytest.raises(ValueError) as e:
-            who_pays_the_bill(None)
-        assert "must be a list" in str(e.value), "Should raise ValueError for None input"
+        result = who_pays_the_bill(None)
+        assert result == "Error: names_list must be a list of names.", "Should return error message for None input"
         
         # Test with list containing invalid entries
-        with pytest.raises(ValueError) as e:
-            who_pays_the_bill(["Alice", "", "Charlie"])
-        assert "cannot contain empty" in str(e.value), "Should raise ValueError for list with empty strings"
+        result = who_pays_the_bill(["Alice", "", "Charlie"])
+        assert result == "Error: names_list cannot contain empty or invalid strings.", "Should return error message for list with empty strings"
         
         # Test with duplicate names
-        with pytest.raises(ValueError) as e:
-            who_pays_the_bill(["Alice", "Bob", "Alice"])
-        assert "cannot contain duplicates" in str(e.value), "Should raise ValueError for duplicate names"
+        result = who_pays_the_bill(["Alice", "Bob", "Alice"])
+        assert result == "Error: names_list cannot contain duplicates.", "Should return error message for duplicate names"
+
 
     def test_random_game_idea(self):
         """Test if random_game_idea() returns valid game suggestions from the correct category and handles errors properly."""
