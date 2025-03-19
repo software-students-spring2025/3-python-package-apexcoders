@@ -175,25 +175,23 @@ def who_pays_the_bill(names_list):
         names_list (list of str): List of players' names.
 
     Returns:
-        str or None: The chosen player's name, or None if the list is empty.
+        str: The chosen player's name, or an error message if input is invalid.
     """
     if not isinstance(names_list, list):
-        raise ValueError("names_list must be a list of names.")
+        return "Error: names_list must be a list of names."
 
     if len(names_list) == 0:
-        raise ValueError("names_list cannot be empty.")
+        return "Error: names_list cannot be empty."
 
     if len(set(names_list)) != len(names_list):
-        raise ValueError("names_list cannot contain duplicates.")
+        return "Error: names_list cannot contain duplicates."
 
     for name in names_list:
         if not isinstance(name, str) or not name.strip():
-            raise ValueError("names_list cannot contain empty or invalid strings.")
-
+            return "Error: names_list cannot contain empty or invalid strings."
 
     # Simulate a roulette selection by randomly choosing a name
     return random.choice(names_list)
-
 
 def random_game_idea(num_players):
     """
