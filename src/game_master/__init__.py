@@ -1,3 +1,7 @@
+"""
+Initializes the game_master package and provides access to various game functions.
+"""
+
 from .game_master import show_help
 from .game_master import spin_the_bottle
 from .game_master import countdown
