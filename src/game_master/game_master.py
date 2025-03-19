@@ -83,9 +83,9 @@ def random_multiple_people_punishment(num, name_list):
 def random_truth(level_difficulty):
     if not isinstance(level_difficulty, str):
         return "Error: The level of difficulty must be a string. Enter easy, medium or hard to set the level of difficulty."
-    if level_difficulty not in {"easy","medium","hard"}:
+    if level_difficulty not in {"easy", "medium", "hard"}:
         return "Error: The level of difficulty entered must be easy, medium or hard"
-    
+
     # Truth prompts based on difficulty level
     truths = {
         "easy": [
@@ -96,7 +96,7 @@ def random_truth(level_difficulty):
             "Who is your celebrity crush?",
             "What is your favorite holiday destination?",
             "Have you ever had a funny dream? Describe it!",
-            "What is your guilty pleasure?"
+            "What is your guilty pleasure?",
         ],
         "medium": [
             "What is one thing you regret doing?",
@@ -106,7 +106,7 @@ def random_truth(level_difficulty):
             "What is the biggest secret you have kept from your parents?",
             "If you had to change one thing about yourself, what would it be?",
             "What is the weirdest thing you've ever eaten?",
-            "Have you ever had a crush on a teacher?"
+            "Have you ever had a crush on a teacher?",
         ],
         "hard": [
             "What is the biggest lie you have ever told?",
@@ -116,7 +116,7 @@ def random_truth(level_difficulty):
             "Have you ever betrayed a friend's trust? What happened?",
             "What is the biggest mistake you have made in a relationship?",
             "What is the one thing you would never admit to your parents?",
-            "Have you ever spread a rumor about someone?"
+            "Have you ever spread a rumor about someone?",
         ],
     }
 
@@ -193,6 +193,7 @@ def who_pays_the_bill(names_list):
     # Simulate a roulette selection by randomly choosing a name
     return random.choice(names_list)
 
+
 def random_game_idea(num_players):
     """
     Generate a random game idea based on the number of players (1 to 5 players supported).
@@ -248,7 +249,7 @@ def random_game_idea(num_players):
             "Musical Chairs - Remove a chair each round!",
         ],
     }
-    
+
     # select a random game based on given number of players
     return random.choice(games[num_players])
 
@@ -265,5 +266,3 @@ def show_help():
         7. countdown_timer(30) - Starts a 30-second countdown. 
         """
     return help_text.strip()
-
-

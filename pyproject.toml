@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "game_master"
 description = "An entertaining Python package that helps make party games more fun by providing random game ideas, challenges, and tools for game masters and party hosts."
-version = "0.1.2"
+version = "0.1.3"
 authors = [
     { name="Tony Zhao", email="sz3822@nyu.edu" },
     { name="Rin Qi", email="yq2290@nyu.edu" },
@@ -29,6 +29,8 @@ dev = ["pytest"]
 [project.urls]
 "Homepage" = "https://github.com/software-students-spring2025/3-python-package-apexcoders"
 "Repository" = "https://github.com/software-students-spring2025/3-python-package-apexcoders.git"
+"Bug Tracker" = "https://github.com/software-students-spring2025/3-python-package-apexcoders/issues"
+
 
 [project.scripts]
 game_master = "game_master.__main__:main"
